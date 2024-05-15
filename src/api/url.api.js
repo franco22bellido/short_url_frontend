@@ -15,9 +15,17 @@ export const getOneUrl = async (shortUrl)=>{
         console.log(error)
     }
 }
-export const createUrl = async (values)=> {
+export const createUrl = async (url)=> {
     try {
-        const {data} = await axios.post(`/url`, values)
+        const {data} = await axios.post(`/url`, {url})
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const deleteUrl = async (objectId)=> {
+    try {
+        const {data} = await axios.delete(`/url/${objectId}`)
         return data;
     } catch (error) {
         console.log(error)
