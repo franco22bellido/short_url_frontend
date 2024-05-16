@@ -5,6 +5,7 @@ import SectionContainer from './components/SectionContainer'
 import UrlList from './components/UrlList'
 import {useUrls} from './context/UrlContext'
 import FormUrl from './components/FormUrl'
+import PasteFromClipBoardButton from './components/PasteFromClipBoardButton'
 
 function App() {
   const { urls } = useUrls()
@@ -36,7 +37,6 @@ function App() {
           <h1 className='text-center text-5xl mt-24 mb-14'>Short url</h1>
 
           <FormUrl/>
-          
           <UrlList urls={urls}/>
 
         </SectionContainer>
