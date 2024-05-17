@@ -4,26 +4,33 @@ import CopyToClipBoardButton from "./CopyToClipBoardButton"
 import DeleteIcon from "./icons/DeleteIcon"
 
 const Url = ({url={}}) => {
-  const {deleteOne} = useUrls()
+  const {deleteOne, addClick} = useUrls()
+
 
   return (
     <>
-        <p>{url.url}</p>
+                <p className="max-w-56 min-w-56 break-words text-2xl md:text-xl">{url.url}</p>
                 <Link
                   target='_blank'
                   rel="noopener noreferrer"
-                  to={`${location.origin}/${url.shortUrl}`}
+                  to={`/${url.shortUrl}`}
+                  className="text-2xl md:text-xl"
+                  onClick={()=> addClick(url._id)}
                 >{`${location.origin}/${url.shortUrl}`}</Link>
 
-                <div className='flex gap-2'>
-                  <CopyToClipBoardButton shortUrl={url.shortUrl}/>
-                  <div className='w-full sm:w-24 py-2 rounded-full bg-amber-400 text-center text-white'>
+                <p className="text-xl md:md:text-xl">{url.clicks} clicks</p>
+
+                <div className='w-full md:w-44 flex flex-wrap-reverse gap-2 items-center justify-center'>
+                  <button className='flex w-full md:w-24 rounded-full bg-amber-400 text-center text-white py-1'>
                     <Link
+                      className="w-full"
                       target='_blank'
                       rel="noopener noreferrer"
-                      to={`${location.origin}/${url.shortUrl}`}
+                      to={`/${url.shortUrl}`}
+                      onClick={()=> addClick(url._id)}
                     >Visit</Link>
-                  </div>
+                  </button>
+                  <CopyToClipBoardButton shortUrl={url.shortUrl}/>
                   <button className=" text-red-600 text-center" onClick={() => deleteOne(url._id)}>
                         <DeleteIcon/>
                   </button>

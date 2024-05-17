@@ -5,7 +5,6 @@ import SectionContainer from './components/SectionContainer'
 import UrlList from './components/UrlList'
 import {useUrls} from './context/UrlContext'
 import FormUrl from './components/FormUrl'
-import PasteFromClipBoardButton from './components/PasteFromClipBoardButton'
 
 function App() {
   const { urls } = useUrls()
@@ -22,7 +21,7 @@ function App() {
   }
   useEffect(() => {
     getData()
-  }, [])
+  }, [urls])
 
   return (
     <>

@@ -8,6 +8,7 @@ const ToShortUrl = () => {
 
   const getUrl = async ()=> {
     const data = await getOneUrl(shortUrl)
+    
     let https = 'https://'
 
     if(!data.url.startsWith('https')){

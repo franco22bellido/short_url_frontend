@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { deleteUrl, getUrls } from "../api/url.api";
+import { createUrl, deleteUrl, getUrls } from "../api/url.api";
+import { isValidAndConvertUrl} from "../common/isValidUrl";
 
 const UrlContext = createContext()
 
@@ -14,6 +15,7 @@ export const useUrls = ()=> {
 
 export const UrlProvider = ({children})=> {
     const [urls, setUrls] = useState([])
+    const [errors, setErrors] = useState([])
 
     const getAllUrls = async ()=> {
       try {
@@ -29,14 +31,44 @@ export const UrlProvider = ({children})=> {
         return url._id !== objectId
       }))
     }
+    const addUrl = async (url)=> {
+      try {
+        let newUrl = isValidAndConvertUrl(url)
+        if(!newUrl) throw new Error('Url not valid')
+        
+        const data = await createUrl(newUrl)
+        setUrls([...urls, data])
+      } catch (error) {
+        setErrors([error.message])
+      }
+    }
+
+    const addClick = async (id)=> {
+      let updatedUrls = urls.map((url)=> {
+        if(url._id === id){
+          url.clicks = url.clicks + 1
+          return url
+        }else {
+          return url
+        }
+      })
+      setUrls(updatedUrls)
+
+    }
     useEffect(()=>{
       getAllUrls()
     }, [])
-
+    useEffect(()=> {
+      if(errors.length > 0){
+        setTimeout(() => {
+          setErrors([])
+        }, 3000);
+      }
+    }, [errors])
 
 
     return (
-        <UrlContext.Provider value={{deleteOne, urls, setUrls}}> 
+        <UrlContext.Provider value={{deleteOne, urls, setUrls, addClick, addUrl, errors}}> 
             {children}
         </UrlContext.Provider>
     )

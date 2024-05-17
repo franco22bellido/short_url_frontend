@@ -7,7 +7,15 @@ const UrlList = ({urls=[]}) => {
       {
         urls && 
         urls.map((url)=> (
-            <article key={url._id} className='flex flex-row items-center justify-between flex-wrap border w-full px-6 py-5 mb-4'>
+            <article key={url._id} className='
+            w-full
+            flex 
+            flex-col
+            gap-2
+            md:flex-row
+            items-center 
+            justify-between flex-wrap
+            border px-6 py-5 mb-4'>
                 <Url url={url}/>
             </article>
         ))  

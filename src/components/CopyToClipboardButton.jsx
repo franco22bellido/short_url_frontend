@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import CopyIcon from './icons/CopyIcon'
+import CopiedIcon from './icons/CopiedIcon'
 
-const CopyToClipBoardButton = ({shortUrl}) => {
+const CopyToClipBoardButton = ({shortUrl, }) => {
     const [isCopied, setIsCopied]= useState(false)
 
     const CopyUrlToClipBoard = async (shortUrl) => {
@@ -8,9 +10,14 @@ const CopyToClipBoardButton = ({shortUrl}) => {
         setIsCopied(!isCopied)
     }
 
+    useEffect(()=>{
+        setTimeout(() => {
+            setIsCopied(false)
+        }, 2000);
+    },[isCopied])
     return (
-        <button className='w-full sm:w-24 py-2 rounded-full bg-slate-600'
-            onClick={() => CopyUrlToClipBoard(shortUrl)}>{isCopied ? 'Copied' : 'Copy'}</button>
+        <button
+            onClick={() => CopyUrlToClipBoard(shortUrl)}>{isCopied ? <CopiedIcon/> : <CopyIcon/>}</button>
     )
 }
 
