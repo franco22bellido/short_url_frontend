@@ -8,8 +8,11 @@ export const addHttps = (urlString='')=> {
 export const isValidAndConvertUrl = (urlString='') => {   
     let url;
     try {
-          let includePoints = urlString.includes('.')
-          if(!includePoints) return false
+          let include = urlString.includes('.')
+          if(!include) return false
+          include = urlString.includes(' ')
+          if(include) return false
+
           url = new URL(urlString);
     }
     catch(e){

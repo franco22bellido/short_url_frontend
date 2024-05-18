@@ -55,9 +55,7 @@ export const UrlProvider = ({children})=> {
       setUrls(updatedUrls)
 
     }
-    useEffect(()=>{
-      getAllUrls()
-    }, [])
+
     useEffect(()=> {
       if(errors.length > 0){
         setTimeout(() => {
@@ -68,7 +66,7 @@ export const UrlProvider = ({children})=> {
 
 
     return (
-        <UrlContext.Provider value={{deleteOne, urls, setUrls, addClick, addUrl, errors}}> 
+        <UrlContext.Provider value={{deleteOne,getAllUrls, urls, setUrls, addClick, addUrl, errors}}> 
             {children}
         </UrlContext.Provider>
     )

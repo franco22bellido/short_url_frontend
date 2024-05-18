@@ -15,7 +15,9 @@ const UrlList = ({urls=[]}) => {
             md:flex-row
             items-center 
             justify-between flex-wrap
-            border px-6 py-5 mb-4'>
+            border 
+            px-6 py-5
+            mb-4'>
                 <Url url={url}/>
             </article>
         ))  

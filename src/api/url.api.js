@@ -10,10 +10,9 @@ export const getUrls = async () => {
 export const getOneUrl = async (shortUrl)=>{
     try {
         const {data} = await axios.get(`/url/${shortUrl}`)
-        console.log(data)
         return data
     } catch (error) {
-        console.log(error)
+      return error.response;
     }
 }
 export const createUrl = async (url)=> {

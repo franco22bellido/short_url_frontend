@@ -9,19 +9,19 @@ const Url = ({url={}}) => {
 
   return (
     <>
-                <p className="max-w-56 min-w-56 break-words text-2xl md:text-xl">{url.url}</p>
+                <p className="w-full md:w-56 min-w-56 text-center break-words text-base md:text-lg">{url.url}</p>
                 <Link
                   target='_blank'
-                  rel="noopener noreferrer"
+                    rel="noopener noreferrer"
                   to={`/${url.shortUrl}`}
-                  className="text-2xl md:text-xl"
+                  className="text-base md:text-lg"
                   onClick={()=> addClick(url._id)}
                 >{`${location.origin}/${url.shortUrl}`}</Link>
 
-                <p className="text-xl md:md:text-xl">{url.clicks} clicks</p>
+                <p className="text-base md:text-lg">{url.clicks} clicks</p>
 
                 <div className='w-full md:w-44 flex flex-wrap-reverse gap-2 items-center justify-center'>
-                  <button className='flex w-full md:w-24 rounded-full bg-amber-400 text-center text-white py-1'>
+                  <button className='flex w-full md:w-24 rounded-full bg-amber-400 text-center text-white py-1 hover:scale-110 transition-all'>
                     <Link
                       className="w-full"
                       target='_blank'
@@ -31,10 +31,9 @@ const Url = ({url={}}) => {
                     >Visit</Link>
                   </button>
                   <CopyToClipBoardButton shortUrl={url.shortUrl}/>
-                  <button className=" text-red-600 text-center" onClick={() => deleteOne(url._id)}>
+                  <button className=" text-red-600 text-center hover:scale-110 transition-all" onClick={() => deleteOne(url._id)}>
                         <DeleteIcon/>
                   </button>
-
         </div>
     </>
   )

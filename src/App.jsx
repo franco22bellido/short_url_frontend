@@ -1,27 +1,29 @@
 import './App.css'
 import { useEffect} from 'react'
-import { login } from './api/user.api'
 import SectionContainer from './components/SectionContainer'
 import UrlList from './components/UrlList'
 import {useUrls} from './context/UrlContext'
 import FormUrl from './components/FormUrl'
+import { useParams } from 'react-router-dom'
+import { UseAuth } from './context/authContext'
 
 function App() {
-  const { urls } = useUrls()
+  const { urls, getAllUrls} = useUrls()
+  const {signIn} = UseAuth()
+  const {usertest} = useParams()
 
-  const signIn = async () => {
-    try {
-      await login({ username: 'franco', password: 'password' })
-    } catch (error) {
-      console.log(error)
-    }
+  const getUser= async () => {
+      if(usertest === 'usertest'){
+        await signIn({ username: 'franco', password: 'password' })
+      }
   }
   const getData = async () => {
-    await signIn();
+    await getUser();
+    await getAllUrls()
   }
   useEffect(() => {
     getData()
-  }, [urls])
+  }, [])
 
   return (
     <>

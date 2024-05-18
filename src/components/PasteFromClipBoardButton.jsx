@@ -1,3 +1,5 @@
+import PasteIcon from "./icons/PasteIcon"
+
 const PasteFromClipBoardButton = ({setText, text}) => {
 
   const paste = async ()=> {
@@ -6,9 +8,10 @@ const PasteFromClipBoardButton = ({setText, text}) => {
     return setText(newText.concat(readText))
   }
   return (
-    <button type="button" className="bg-cyan-900 p-0 w-32 border rounded border-slate-900
-    hover:scale-105 transition-all"
-    onClick={paste}>Paste</button>
+    <button type="button" className="hover:scale-105 transition-all"
+    onClick={paste}>
+      <PasteIcon className={'size-8'}/>
+    </button>
   )
 }
 

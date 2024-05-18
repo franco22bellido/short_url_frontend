@@ -16,3 +16,11 @@ export const register = async (user)=> {
         console.log(error)
     }
 }
+export const validateToken = async ()=> {
+    try {
+        const {data} = await axios.get('/auth/validate')
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}

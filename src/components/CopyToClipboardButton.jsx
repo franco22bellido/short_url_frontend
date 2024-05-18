@@ -11,13 +11,16 @@ const CopyToClipBoardButton = ({shortUrl, }) => {
     }
 
     useEffect(()=>{
-        setTimeout(() => {
-            setIsCopied(false)
-        }, 2000);
+        if(isCopied === true){
+            setTimeout(() => {
+                setIsCopied(!isCopied)
+            }, 2000);
+        }
     },[isCopied])
     return (
         <button
-            onClick={() => CopyUrlToClipBoard(shortUrl)}>{isCopied ? <CopiedIcon/> : <CopyIcon/>}</button>
+        className='hover:scale-110 transition-all'
+        onClick={() => CopyUrlToClipBoard(shortUrl)}>{isCopied ? <CopiedIcon/> : <CopyIcon/>}</button>
     )
 }
 
