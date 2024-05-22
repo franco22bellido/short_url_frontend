@@ -14,7 +14,7 @@ const UrlList = ({urls=[]}) => {
             gap-2
             md:flex-row
             items-center 
-            justify-between flex-wrap
+            justify-between
             border 
             px-6 py-5
             mb-4'>

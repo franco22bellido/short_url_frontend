@@ -5,7 +5,7 @@ export const login = async (user)=> {
         const res = await axios.post('/auth/login', user)
         return res.data;
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 export const register = async (user)=> {
@@ -18,9 +18,9 @@ export const register = async (user)=> {
 }
 export const validateToken = async ()=> {
     try {
-        const {data} = await axios.get('/auth/validate')
-        return data;
+        return await axios.get('/auth/validate')
     } catch (error) {
         console.log(error)
+        return error
     }
 }

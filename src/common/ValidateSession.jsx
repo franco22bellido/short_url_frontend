@@ -10,7 +10,6 @@ const ValidateSession = () => {
   if(!isAuthenticated && !loading){
     return <Navigate to={'/login'} replace/>
   }
-
   return (
     <Outlet/>
   )

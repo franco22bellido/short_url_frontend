@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             setIsAuthenticated(false)
             setLoading(false)
-            return console.log(error)
         }
     }
     const signUp = async (values) => {
@@ -48,22 +47,17 @@ export const AuthProvider = ({ children }) => {
 
     const validateUser = async () => {
         try {
-            const token = Cookies.get('token')
-            if (!token) {
+            const res = await validateToken()
+            if(res.status === 200){
                 setLoading(false)
-                return setIsAuthenticated(false)
-            }
-            const data = await validateToken()
-            if(data){
-                setLoading(false)
-                setUser(data.user)
+                setUser(res.data.user)
                 return setIsAuthenticated(true)
             }
+            setLoading(false)
+            setIsAuthenticated(false)
         } catch (error) {
             setLoading(false)
             setIsAuthenticated(false)
-            console.log(error)
-            return false;
         }
     }
     useEffect(()=> {
