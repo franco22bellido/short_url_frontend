@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom"
-import { UseAuth } from "../context/authContext"
+import { UseAuth } from "../context/AuthContext"
 
 const ValidateSession = () => {
   const {isAuthenticated, loading} = UseAuth()
