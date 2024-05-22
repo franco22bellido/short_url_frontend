@@ -10,7 +10,6 @@ const LoginPage = () => {
   const onSubmit = async (values)=> {
     await signIn(values)
     reset()
-    return navigate('/')
   }
   useEffect(()=> {
     if(isAuthenticated){

@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     }
     useEffect(()=> {
         validateUser()
-    }, [isAuthenticated])
+    }, [])
     return (
         <AuthContext.Provider
             value={{ signIn, validateUser, signUp, user, loading, isAuthenticated, logOut}}>

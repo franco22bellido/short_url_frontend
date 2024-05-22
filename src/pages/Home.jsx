@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useUrls } from "../context/UrlContext"
 import { UseAuth } from "../context/AuthContext"
 import { useEffect } from "react"
@@ -10,13 +10,11 @@ const Home = () => {
   const { urls, getAllUrls } = useUrls()
   const { signIn } = UseAuth()
   const { usertest } = useParams()
-  const navigate = useNavigate()
 
   const makeLogin = async () => {
     if (usertest === 'usertest') {
       return await signIn({ username: 'franco', password: 'password' })
     }
-    return navigate('/login')
   }
   const getData = async () => {
     await makeLogin();

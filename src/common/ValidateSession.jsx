@@ -3,12 +3,12 @@ import { UseAuth } from "../context/AuthContext"
 
 const ValidateSession = () => {
   const {isAuthenticated, loading} = UseAuth()
-
+  
   if(loading){
     return <div>loading...</div>
   }
   if(!isAuthenticated && !loading){
-    return <Navigate to={'/login'}/>
+    return <Navigate to={'/login'} replace/>
   }
 
   return (
