@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useUrls } from "../context/UrlContext"
-import CopyToClipBoardButton from "./CopyToClipBoardButton"
+import CopyToClipBoardButton from "./CopyToClipboardButton"
 import DeleteIcon from "./icons/DeleteIcon"
 
 const Url = ({url={}}) => {
