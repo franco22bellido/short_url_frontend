@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { UrlProvider } from './context/UrlContext'
-import { AuthProvider } from './context/authContext'
+import { AuthProvider } from './context/AuthContext'
 import ValidateSession from './common/validateSession'
 import RegisterPage from './pages/RegisterPage'
 import Home from './pages/Home'
