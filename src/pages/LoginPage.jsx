@@ -1,6 +1,6 @@
 import {useForm} from 'react-hook-form'
 import SectionContainer from '../components/SectionContainer'
-import { UseAuth } from '../context/authContext'
+import { UseAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 const LoginPage = () => {
