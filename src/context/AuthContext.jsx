@@ -47,14 +47,9 @@ export const AuthProvider = ({ children }) => {
 
     const validateUser = async () => {
         try {
-            const res = await validateToken()
-            if(res.status === 200){
-                setLoading(false)
-                setUser(res.data.user)
-                return setIsAuthenticated(true)
-            }
+            await validateToken()
             setLoading(false)
-            setIsAuthenticated(false)
+            setIsAuthenticated(true)
         } catch (error) {
             setLoading(false)
             setIsAuthenticated(false)

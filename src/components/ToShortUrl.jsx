@@ -6,9 +6,11 @@ const ToShortUrl = () => {
   const {shortUrl} = useParams()
 
   const getUrl = async ()=> {
-    const data = await getOneUrl(shortUrl)
-    if(data.status === 404) return window.location.pathname = '/'
-    return window.location.href = data.url
+    const res = await getOneUrl(shortUrl)
+
+    if(res.status !== 200) return window.location.pathname = '/'
+    return window.location.href = res.data.url
+    
   }
   useEffect(()=> {
     getUrl()

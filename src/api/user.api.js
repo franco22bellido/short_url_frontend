@@ -1,12 +1,8 @@
 import axios from "./axios.config";
 
 export const login = async (user)=> {
-    try {
         const res = await axios.post('/auth/login', user)
         return res.data;
-    } catch (error) {
-        throw new Error(error)
-    }
 }
 export const register = async (user)=> {
     try {
@@ -17,10 +13,5 @@ export const register = async (user)=> {
     }
 }
 export const validateToken = async ()=> {
-    try {
         return await axios.get('/auth/validate')
-    } catch (error) {
-        console.log(error)
-        return error
-    }
 }

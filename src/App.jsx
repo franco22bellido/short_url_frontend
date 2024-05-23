@@ -10,21 +10,21 @@ import ToShortUrl from './components/ToShortUrl'
 function App() {
 
   return (
-    <UrlProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <UrlProvider>
         <BrowserRouter>
           <Routes>
-            <Route path='/login' element={<LoginPage/>} />
-            <Route path='/register' element={<RegisterPage/>} />
-            <Route path='/test/:usertest' element={<Home/>} />
-            <Route element={<ValidateSession/>}>
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
+            <Route path='/test/:usertest' element={<Home />} />
+            <Route element={<ValidateSession />}>
               <Route path='/' element={<Home />} />
             </Route>
-            <Route path='/:shortUrl' element={<ToShortUrl/>} />
+            <Route path='/:shortUrl' element={<ToShortUrl />} />
           </Routes>
         </BrowserRouter>
-      </AuthProvider>
-    </UrlProvider>
+      </UrlProvider>
+    </AuthProvider>
   )
 }
 
