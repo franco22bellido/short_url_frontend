@@ -17,7 +17,8 @@ const UrlList = ({urls=[]}) => {
             justify-between
             border 
             px-6 py-5
-            mb-4'>
+            mb-4
+            text-center'>
                 <Url url={url}/>
             </article>
         ))  

@@ -14,7 +14,7 @@ const Url = ({ url = {} }) => {
         target='_blank'
         rel="noopener noreferrer"
         to={`/${url.shortUrl}`}
-        className="text-base"
+        className="text-base text-center break-words"
         onClick={() => addClick(url._id)}
       >{`${location.origin}/${url.shortUrl}`}</Link>
 
