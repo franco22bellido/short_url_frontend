@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
 
     const signIn = async (values) => {
         try {
+            setLoading(true)
             const data = await login(values)
             setUser(data)
             setIsAuthenticated(true)

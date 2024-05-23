@@ -4,6 +4,8 @@ import { UseAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Errors from '../components/Errors'
+import Loader from '../components/Loader'
+
 const LoginPage = () => {
     const {register, reset, handleSubmit} = useForm()
     const navigate = useNavigate()
@@ -21,6 +23,7 @@ const LoginPage = () => {
   return (
     <SectionContainer>
           <h1 className='text-center text-5xl mt-24 mb-14'>Login</h1>
+          <Loader/>
         <form className='md:w-[700px] flex flex-col items-center justify-center flex-wrap gap-4' onSubmit={handleSubmit(onSubmit)}>
             <input className='border rounded w-[340px] text-xl' {...register('username', {required: true})} type="text" placeholder='username'/>
             <input className='border rounded w-[340px] text-xl' {...register('password', {required: true})} type="password" placeholder='password'/>

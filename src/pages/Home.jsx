@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import SectionContainer from "../components/SectionContainer"
 import FormUrl from "../components/FormUrl"
 import UrlList from "../components/UrlList"
+import Loader from "../components/Loader"
 
 const Home = () => {
   const { urls, getAllUrls } = useUrls()
@@ -34,8 +35,8 @@ const Home = () => {
 
         <SectionContainer>
           <h1 className='text-center text-3xl sm:text-5xl mt-6 mb-5'>Short url</h1>
-
           <FormUrl />
+          <Loader/>
           <UrlList urls={urls} />
 
         </SectionContainer>

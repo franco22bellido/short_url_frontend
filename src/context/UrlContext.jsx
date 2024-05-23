@@ -15,18 +15,24 @@ export const useUrls = ()=> {
 
 export const UrlProvider = ({children})=> {
     const [urls, setUrls] = useState([])
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
 
     const getAllUrls = async ()=> {
       try {
+        setLoading(true)
         const data = await getUrls();
+        setLoading(false)
         setUrls(data)
       } catch (error) {
+        setLoading(false)
         console.log(error)
       }
     }
     const deleteOne = async (objectId)=> {
+      setLoading(true)
       await deleteUrl(objectId)
+      setLoading(false)
       setUrls(urls.filter((url)=> {
         return url._id !== objectId
       }))
@@ -36,7 +42,9 @@ export const UrlProvider = ({children})=> {
         let newUrl = isValidAndConvertUrl(url)
         if(!newUrl) throw new Error('Url not valid')
         
+        setLoading(true)
         const data = await createUrl(newUrl)
+        setLoading(false)
         setUrls([...urls, data])
       } catch (error) {
         setErrors([error.message])
@@ -66,7 +74,7 @@ export const UrlProvider = ({children})=> {
 
 
     return (
-        <UrlContext.Provider value={{deleteOne,getAllUrls, urls, setUrls, addClick, addUrl, errors, setErrors}}> 
+        <UrlContext.Provider value={{deleteOne,getAllUrls, urls, setUrls, addClick, addUrl, errors, setErrors,loading}}> 
             {children}
         </UrlContext.Provider>
     )
