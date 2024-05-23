@@ -1,15 +1,25 @@
 import { useEffect } from 'react'
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import {getOneUrl} from '../api/url.api'
+import { useUrls } from '../context/UrlContext'
 
 const ToShortUrl = () => {
   const {shortUrl} = useParams()
+  const {setErrors} = useUrls()
+  const navigate = useNavigate()
 
   const getUrl = async ()=> {
-    const res = await getOneUrl(shortUrl)
+    try {
+      const data = await getOneUrl(shortUrl) 
+      return window.location.href = data.url
 
-    if(res.status !== 200) return window.location.pathname = '/'
-    return window.location.href = res.data.url
+    } catch (error) {
+      if(!Array.isArray(error)){
+        setErrors([error.message])
+        return navigate('/')
+      }
+      setErrors(error)
+    }
     
   }
   useEffect(()=> {

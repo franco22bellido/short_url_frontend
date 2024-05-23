@@ -3,6 +3,7 @@ import SectionContainer from '../components/SectionContainer'
 import { UseAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import Errors from '../components/Errors'
 const LoginPage = () => {
     const {register, reset, handleSubmit} = useForm()
     const navigate = useNavigate()
@@ -25,6 +26,8 @@ const LoginPage = () => {
             <input className='border rounded w-[340px] text-xl' {...register('password', {required: true})} type="password" placeholder='password'/>
             <button className='bg-gray-900 rounded-full w-full sm:w-24 hover:scale-110 transition-all p-1'>Sign In</button>            
         </form>
+        <Errors/>
+       
     </SectionContainer>
   )
 }

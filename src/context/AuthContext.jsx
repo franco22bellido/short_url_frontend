@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({})
     const [loading, setLoading] = useState(true)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [errors, setErrors] = useState([])
 
     const signIn = async (values) => {
         try {
@@ -23,6 +24,10 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true)
             setLoading(false)
         } catch (error) {
+            if (!Array.isArray(error.response.data)) {
+                return setErrors([error.response.data.message])
+            }
+            setErrors(error.response.data.message)
             setIsAuthenticated(false)
             setLoading(false)
         }
@@ -35,7 +40,7 @@ export const AuthProvider = ({ children }) => {
             return console.log(error)
         }
     }
-    const logOut = async ()=> {
+    const logOut = async () => {
         try {
             Cookies.remove('token')
             setIsAuthenticated(false)
@@ -55,12 +60,19 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(false)
         }
     }
-    useEffect(()=> {
+    useEffect(() => {
         validateUser()
     }, [])
+    useEffect(()=> {
+        if(errors.length > 0){
+            setTimeout(()=> {
+                setErrors([])
+            }, 3500)
+        }
+    }, [errors])
     return (
         <AuthContext.Provider
-            value={{ signIn, validateUser, signUp, user, loading, isAuthenticated, logOut}}>
+            value={{ signIn, validateUser, signUp, user, loading, isAuthenticated, logOut, errors, setErrors}}>
             {children}
         </AuthContext.Provider>
     )
