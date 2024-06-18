@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
             if (!Array.isArray(error.response.data)) {
                 setErrors([error.response.data.message])
             } else {
-                setErrors(error.response.data.message)
+                setErrors(error.response.data)
             }
             setIsAuthenticated(false)
             setLoading(false)
