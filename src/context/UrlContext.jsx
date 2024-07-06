@@ -45,7 +45,7 @@ export const UrlProvider = ({children})=> {
         setLoading(true)
         const data = await createUrl(newUrl)
         setLoading(false)
-        setUrls([...urls, data])
+        setUrls([data, ...urls])
       } catch (error) {
         setErrors([error.message])
       }

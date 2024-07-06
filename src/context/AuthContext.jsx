@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { login, register, validateToken } from '../api/user.api.js'
-import Cookies from 'js-cookie'
 
 const AuthContext = createContext()
 
@@ -21,6 +20,7 @@ export const AuthProvider = ({ children }) => {
         try {
             setLoading(true)
             const data = await login(values)
+            window.localStorage.setItem('authorization', data.authorization)
             setUser(data)
             setIsAuthenticated(true)
             setLoading(false)
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     }
     const logOut = async () => {
         try {
-            Cookies.remove('token')
+            window.localStorage.removeItem('authorization')
             setIsAuthenticated(false)
             setLoading(false)
         } catch (error) {
@@ -58,6 +58,7 @@ export const AuthProvider = ({ children }) => {
             setLoading(false)
             setIsAuthenticated(true)
         } catch (error) {
+            console.log(error)
             setLoading(false)
             setIsAuthenticated(false)
         }
@@ -65,16 +66,16 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         validateUser()
     }, [])
-    useEffect(()=> {
-        if(errors.length > 0){
-            setTimeout(()=> {
+    useEffect(() => {
+        if (errors.length > 0) {
+            setTimeout(() => {
                 setErrors([])
             }, 3500)
         }
     }, [errors])
     return (
         <AuthContext.Provider
-            value={{ signIn, validateUser, signUp, user, loading, isAuthenticated, logOut, errors, setErrors}}>
+            value={{ signIn, validateUser, signUp, user, loading, isAuthenticated, logOut, errors, setErrors }}>
             {children}
         </AuthContext.Provider>
     )
