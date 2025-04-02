@@ -7,6 +7,8 @@ import RegisterPage from './pages/RegisterPage'
 import Home from './pages/Home'
 import LoginPage from './pages/LoginPage'
 import ToShortUrl from './components/ToShortUrl'
+import Song from './pages/Song';
+
 function App() {
 
   return (
@@ -14,6 +16,7 @@ function App() {
       <UrlProvider>
         <BrowserRouter>
           <Routes>
+            <Route path='/songs' element={< Song />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/test/:usertest' element={<Home />} />
